@@ -49,5 +49,6 @@ ngrok.connect({
 	var match = myRegexp.exec(url);
 	var cmd_str = util.format('ssh pi@%s -p%s', match[1], match[2]);
 	send_slack_message('++ ' + cmd_str);
-	twitter_helper.post_tweet(cmd_str);
+	// twitter_helper.post_tweet(cmd_str);
+	twitter_helper.post_dm(cmd_str, 'jordibeard');
 });
