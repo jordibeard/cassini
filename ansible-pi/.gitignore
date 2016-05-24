@@ -1,3 +1,4 @@
 .DS_Store
 hosts
 secret_files/*
+ansible-pi/playbook.retry

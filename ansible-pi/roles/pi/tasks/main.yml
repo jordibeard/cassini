@@ -53,13 +53,13 @@
   action: install_occi
 
 - name: 'install node'
-  action: apt pkg=$item state=installed
+  action: apt pkg={{item}} state=installed
   with_items:
     - node
     - npm
 
 - name: 'install imageviewers'
-  action: apt pkg=$item state=installed
+  action: apt pkg={{item}} state=installed
   with_items:
     - imagemagick
     - caca-utils
@@ -71,7 +71,7 @@
 
 # install ytalk
 - name: 'install ytalk'
-  action: apt pkg=$item state=installed
+  action: apt pkg={{item}} state=installed
   with_items:
     - ytalk
 
@@ -81,17 +81,21 @@
   action: template src=templates/inetd.conf dest=/etc/inetd.conf
 
 
-- name: 'crontab to add new users'
-  cron: name="add new users" minute="*/1" job="export PYTHONPATH={{src_dir}}:$PYTHONPATH && /usr/bin/python {{src_dir}}/oasis_python/create_new_users.py > {{log_dir}}/cron.log 2> {{log_dir}}/cron.error"
-  tags: cron
+#- name: 'crontab to add new users'
+# cron: name="add new users" minute="*/1" job="export PYTHONPATH={{src_dir}}:$PYTHONPATH && /usr/bin/python {{src_dir}}/oasis_python/create_new_users.py > {{log_dir}}/cron.log 2> {{log_dir}}/cron.error"
+# tags: cron
 
-#- name: for removing add new users cronjob
-#  cron: name="add new users" state=absent
-#  tags: code
+- name: for removing add new users cronjob
+  cron: name="add new users" state=absent
+  tags: code
 
-- name: 'crontab for greeting room'
-  cron: name="greeting room" minute="*/1" job="{{src_dir}}/bash/greetingroom.sh"
-  tags: cron
+#- name: 'crontab for greeting room'
+#  cron: name="greeting room" minute="*/1" job="{{src_dir}}/bash/greetingroom.sh"
+#  tags: cron
+
+- name: for removing greetingroom
+  cron: name="greeting room" state=absent
+  tags: code
 
 - name: 'make bash scripts executable'
   file: path={{src_dir}}/bash state=directory mode=0770 owner=root group=root recurse=yes
