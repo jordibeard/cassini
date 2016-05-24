@@ -13,20 +13,20 @@ clSlack = new Slack(clToken);
 
 var send_slack_message = function(msg) {
 	console.log(msg);
-	//slack.api('chat.postMessage', {
-	//	text: msg,
-	//	channel: '#oasis',
-	//	username: "oasis",
-	//	link_names: 1
-	//}, function (err, response) {
-	//});
-	clSlack.api('chat.postMessage', {
+	slack.api('chat.postMessage', {
 		text: msg,
-		channel: '#oasis',
-		username: "oasis_bot",
+		channel: '#cassini',
+		username: "cassini",
 		link_names: 1
 	}, function (err, response) {
 	});
+	// clSlack.api('chat.postMessage', {
+	// 	text: msg,
+	// 	channel: '#oasis',
+	// 	username: "oasis_bot",
+	// 	link_names: 1
+	// }, function (err, response) {
+	// });
 }
 
 // log console messages
