@@ -1,0 +1,5 @@
+[pis]
+192.168.1.6 ansible_ssh_user=pi
+
+[alt]
+0.tcp.ngrok.io ansible_ssh_user=pi ansible_port=11377
